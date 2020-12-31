@@ -52,73 +52,49 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+      body: TabBarView(
+        controller: _tabController,
         children: [
-          TabBarView(
-            controller: _tabController,
-            children: [
-              Tab1(_controller),
-              Tab2(_controller),
-              Tab3(_controller),
-              Tab4(_controller),
-            ],
-          ),
-          Align(
-            child: IgnorePointer(
-              ignoring: opcty == 0 ? true : false,
-              child: AnimatedOpacity(
-                duration: Duration(milliseconds: 200),
-                curve: Curves.bounceIn,
-                opacity: opcty,
-                child: Container(
-                  color: Colors.white,
-                  height: kToolbarHeight * 0.8,
-                  child: TabBar(
-                    controller: _tabController,
-                    tabs: [
-                      Icon(
-                        Icons.home,
-                        color: Colors.black,
-                      ),
-                      Icon(
-                        Icons.notifications,
-                        color: Colors.black,
-                      ),
-                      Icon(
-                        Icons.speaker_phone_rounded,
-                        color: Colors.black,
-                      ),
-                      Icon(
-                        Icons.verified_user,
-                        color: Colors.black,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            alignment: Alignment.bottomCenter,
-          )
+          Tab1(_controller),
+          Tab2(_controller),
+          Tab3(_controller),
+          Tab4(_controller),
         ],
       ),
-      // bottomNavigationBar: BottomNavigationBar(
-      //   fixedColor: Colors.transparent,
-      //   backgroundColor: Colors.transparent,
-      //   items: [
-      //     BottomNavigationBarItem(
-      //         label: 'hh',
-      //         activeIcon: Icon(Icons.add),
-      //         icon: Icon(Icons.height)),
-      //     BottomNavigationBarItem(
-      //         label: 'gg',
-      //         activeIcon: Icon(Icons.add),
-      //         icon: Icon(Icons.height)),
-      //     BottomNavigationBarItem(
-      //         label: 'gg',
-      //         activeIcon: Icon(Icons.add),
-      //         icon: Icon(Icons.height)),
-      //   ],
-      // ),
+      extendBody: true,
+      bottomNavigationBar: IgnorePointer(
+        ignoring: opcty == 0 ? true : false,
+        child: AnimatedOpacity(
+          duration: Duration(milliseconds: 200),
+          curve: Curves.bounceIn,
+          opacity: opcty,
+          child: Container(
+            color: Colors.white,
+            height: kToolbarHeight * 0.8,
+            child: TabBar(
+              controller: _tabController,
+              tabs: [
+                Icon(
+                  Icons.home,
+                  color: Colors.black,
+                ),
+                Icon(
+                  Icons.notifications,
+                  color: Colors.black,
+                ),
+                Icon(
+                  Icons.speaker_phone_rounded,
+                  color: Colors.black,
+                ),
+                Icon(
+                  Icons.verified_user,
+                  color: Colors.black,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
